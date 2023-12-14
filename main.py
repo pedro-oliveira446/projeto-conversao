@@ -1,7 +1,7 @@
 import math
 
 def divide(a, b):
-    return round(a / b,2)
+    return round(a / b,1)
 
 def calcula_densidade(potencia_secundaria):
     if potencia_secundaria <= 500:
@@ -34,11 +34,11 @@ def main():
     densidade_corrente_primaria = divide(corrente_primaria,secao_condutor_primario)
     densidade_corrente_secundaria = divide(corrente_secundaria,secao_condutor_secundario)
 
-    media_densidades = round( (densidade_corrente_primaria + densidade_corrente_secundaria) / 2 ,2 )
+    media_densidades = round( (densidade_corrente_primaria + densidade_corrente_secundaria) / 2 ,1 )
 
-    secao_magnetica_nucleo = round(7.5 * math.sqrt(divide(potencia_secundaria, frequencia)), 2)
-
-    secao_geometrica_nucleo = secao_magnetica_nucleo * 1.1;
+    secao_magnetica_nucleo = round(7.5 * math.sqrt(divide(potencia_secundaria, frequencia)), 1)
+    
+    secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
 
     print(secao_condutor_primario,corrente_primaria)
     print(secao_condutor_secundario,corrente_secundaria)
