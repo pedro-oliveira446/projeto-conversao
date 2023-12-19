@@ -13,19 +13,19 @@ def calcula_densidade(potencia_secundaria):
 
 def calcula_lado_a_lamina(secao_magnetica_nucleo):
     if secao_magnetica_nucleo >= 18.8:
-        return 5
+        return 5,1880
     elif secao_magnetica_nucleo >= 12:
-        return 4
+        return 4,1200
     elif secao_magnetica_nucleo >= 9:
-        return 3.5
+        return 3.5,900
     elif secao_magnetica_nucleo >= 6.75:
-        return 3
+        return 3,675
     elif secao_magnetica_nucleo >= 4.68:
-        return 2.5
+        return 2.5,468
     elif secao_magnetica_nucleo >= 3:
-        return 2
+        return 2,300
     else:
-        return 1.5
+        return 1.5,168
 
 def calcula_constante_espiras(frequencia):
     if frequencia == 60:
@@ -66,7 +66,7 @@ def main():
     
     secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
 
-    lado_a = calcula_lado_a_lamina(secao_magnetica_nucleo)
+    lado_a,secao_janela = calcula_lado_a_lamina(secao_magnetica_nucleo)
     lado_b = round(secao_geometrica_nucleo/lado_a,1)
     
     # Calculo espiras
@@ -77,6 +77,12 @@ def main():
 
     numero_espiras_primario = round(tensao_primaria * espiras_volt)
     numero_espiras_secundario = round(tensao_secundaria * espiras_volt * 1.1)
+
+    # Possibilidade execucao
+
+    secao_cobre_enrolado = numero_espiras_primario * secao_condutor_primario + numero_espiras_secundario * secao_condutor_secundario
+
+    possibilidade_execucao = secao_janela / secao_cobre_enrolado
 
     print(secao_condutor_primario,corrente_primaria)
     print(secao_condutor_secundario,corrente_secundaria)
@@ -90,6 +96,8 @@ def main():
     print(espiras_volt)
     print(numero_espiras_primario)
     print(numero_espiras_secundario)
+    print(secao_cobre_enrolado)
+    print(possibilidade_execucao)
 
 if __name__ == "__main__":
     main()
