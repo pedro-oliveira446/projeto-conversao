@@ -26,6 +26,14 @@ def calcula_lado_a_lamina(secao_magnetica_nucleo):
         return 2
     else:
         return 1.5
+
+def calcula_constante_espiras(frequencia):
+    if frequencia == 60:
+        return 33.5
+    elif frequencia == 50:
+        return 40
+    else:
+        return 0
     
 def main():
     frequencia = 60 # Hz
@@ -61,6 +69,15 @@ def main():
     lado_a = calcula_lado_a_lamina(secao_magnetica_nucleo)
     lado_b = round(secao_geometrica_nucleo/lado_a,1)
     
+    # Calculo espiras
+
+    constante_espiras = calcula_constante_espiras(frequencia)
+
+    espiras_volt = divide(constante_espiras,secao_magnetica_nucleo)
+
+    numero_espiras_primario = round(tensao_primaria * espiras_volt)
+    numero_espiras_secundario = round(tensao_secundaria * espiras_volt * 1.1)
+
     print(secao_condutor_primario,corrente_primaria)
     print(secao_condutor_secundario,corrente_secundaria)
     print(densidade_corrente_primaria,densidade_corrente_secundaria)
@@ -69,6 +86,10 @@ def main():
     print(secao_geometrica_nucleo)
     print(lado_a)
     print(lado_b)
+    print(constante_espiras)
+    print(espiras_volt)
+    print(numero_espiras_primario)
+    print(numero_espiras_secundario)
 
 if __name__ == "__main__":
     main()
