@@ -11,7 +11,7 @@ def calcula_densidade(potencia_secundaria):
     else:
         return 2
 
-def calcula_lado_a_lamina(secao_magnetica_nucleo):
+def calcula_lado_a_lamina_padronizada(secao_magnetica_nucleo):
     if secao_magnetica_nucleo >= 18.8:
         return 5,1880
     elif secao_magnetica_nucleo >= 12:
@@ -27,6 +27,12 @@ def calcula_lado_a_lamina(secao_magnetica_nucleo):
     else:
         return 1.5,168
 
+def calcula_lado_a_lamina_comprida(secao_magnetica_nucleo):
+    if secao_magnetica_nucleo >= 24:
+        return 5,3750
+    else:
+        return 4,2400
+    
 def calcula_constante_espiras(frequencia):
     if frequencia == 60:
         return 33.5
@@ -66,7 +72,7 @@ def main():
     
     secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
 
-    lado_a,secao_janela = calcula_lado_a_lamina(secao_magnetica_nucleo)
+    lado_a,secao_janela = calcula_lado_a_lamina_padronizada(secao_magnetica_nucleo)
     lado_b = round(secao_geometrica_nucleo/lado_a,1)
     
     # Calculo espiras
@@ -83,6 +89,31 @@ def main():
     secao_cobre_enrolado = numero_espiras_primario * secao_condutor_primario + numero_espiras_secundario * secao_condutor_secundario
 
     possibilidade_execucao = secao_janela / secao_cobre_enrolado
+
+    if possibilidade_execucao < 3:
+        # solucao laminas compridas
+
+        # Calculo laminas
+
+        secao_magnetica_nucleo = round(6.5 * math.sqrt(divide(potencia_secundaria, frequencia)), 1)
+    
+        secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
+
+        lado_a,secao_janela = calcula_lado_a_lamina_comprida(secao_magnetica_nucleo)
+        lado_b = round(secao_geometrica_nucleo/lado_a,1)
+
+        # Calculo espiras
+
+        constante_espiras = calcula_constante_espiras(frequencia)
+
+        espiras_volt = divide(constante_espiras,secao_magnetica_nucleo)
+
+        numero_espiras_primario = round(tensao_primaria * espiras_volt)
+        numero_espiras_secundario = round(tensao_secundaria * espiras_volt * 1.1)
+
+        secao_cobre_enrolado = numero_espiras_primario * secao_condutor_primario + numero_espiras_secundario * secao_condutor_secundario
+
+        possibilidade_execucao = secao_janela / secao_cobre_enrolado
 
     print("secao_condutor_primario | corrente_primaria",secao_condutor_primario,corrente_primaria)
     print("secao_condutor_secundario | corrente_secundaria",secao_condutor_secundario,corrente_secundaria)
