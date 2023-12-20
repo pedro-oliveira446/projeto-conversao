@@ -13,25 +13,25 @@ def calcula_densidade(potencia_secundaria):
 
 def calcula_lado_a_lamina_padronizada(secao_magnetica_nucleo):
     if secao_magnetica_nucleo >= 18.8:
-        return 5,1880
+        return 5,1880,0.095
     elif secao_magnetica_nucleo >= 12:
-        return 4,1200
+        return 4,1200,0.17
     elif secao_magnetica_nucleo >= 9:
-        return 3.5,900
+        return 3.5,900,0.273
     elif secao_magnetica_nucleo >= 6.75:
-        return 3,675
+        return 3,675,0.38
     elif secao_magnetica_nucleo >= 4.68:
-        return 2.5,468
+        return 2.5,468,0.516
     elif secao_magnetica_nucleo >= 3:
-        return 2,300
+        return 2,300,0.674
     else:
-        return 1.5,168
+        return 1.5,168,1.053
 
 def calcula_lado_a_lamina_comprida(secao_magnetica_nucleo):
     if secao_magnetica_nucleo >= 24:
-        return 5,3750
+        return 5,3750,1
     else:
-        return 4,2400
+        return 4,2400,1.58
     
 def calcula_constante_espiras(frequencia):
     if frequencia == 60:
@@ -72,7 +72,7 @@ def main():
     
     secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
 
-    lado_a,secao_janela = calcula_lado_a_lamina_padronizada(secao_magnetica_nucleo)
+    lado_a,secao_janela,peso_nucleo = calcula_lado_a_lamina_padronizada(secao_magnetica_nucleo)
     lado_b = round(secao_geometrica_nucleo/lado_a,1)
     
     # Calculo espiras
@@ -99,7 +99,7 @@ def main():
     
         secao_geometrica_nucleo = round(secao_magnetica_nucleo * 1.1,1);
 
-        lado_a,secao_janela = calcula_lado_a_lamina_comprida(secao_magnetica_nucleo)
+        lado_a,secao_janela,peso_nucleo = calcula_lado_a_lamina_comprida(secao_magnetica_nucleo)
         lado_b = round(secao_geometrica_nucleo/lado_a,1)
 
         # Calculo espiras
@@ -115,6 +115,16 @@ def main():
 
         possibilidade_execucao = secao_janela / secao_cobre_enrolado
 
+    # Calculo peso
+        
+    peso_ferro = round(lado_b * peso_nucleo)
+        
+    comprimento_espira_media = 2 * lado_a + 2 * lado_b + 0.5 * lado_a * 3.14;
+
+    peso_cobre_g = round(divide(secao_cobre_enrolado,100) * comprimento_espira_media * 9,1)
+
+    peso_cobre_kg = divide(peso_cobre_g,1000)
+
     print("secao_condutor_primario | corrente_primaria",secao_condutor_primario,corrente_primaria)
     print("secao_condutor_secundario | corrente_secundaria",secao_condutor_secundario,corrente_secundaria)
     print("densidade_corrente_primaria | densidade_corrente_secundaria",densidade_corrente_primaria,densidade_corrente_secundaria)
@@ -129,6 +139,10 @@ def main():
     print("numero_espiras_secundario",numero_espiras_secundario)
     print("secao_cobre_enrolado",secao_cobre_enrolado)
     print("possibilidade_execucao",possibilidade_execucao)
+    print("peso_nucleo",peso_nucleo)
+    print("peso_ferro",peso_ferro)
+    print("peso_cobre",peso_cobre_g)
+    print("peso_cobre",peso_cobre_kg)
 
 if __name__ == "__main__":
     main()
