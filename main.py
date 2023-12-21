@@ -138,6 +138,14 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
 
     perda_cobre = round(2.43 * (media_densidades ** 2) * peso_cobre_kg,1)
     
+    # Perdas totais
+
+    perda_total = perda_ferro + perda_cobre
+
+    # Total rendimento
+
+    rendimento = round(potencia_secundaria / (potencia_secundaria + perda_total),2)
+    
     print("secao_condutor_primario | corrente_primaria",secao_condutor_primario,corrente_primaria)
     print("secao_condutor_secundario | corrente_secundaria",secao_condutor_secundario,corrente_secundaria)
     print("densidade_corrente_primaria | densidade_corrente_secundaria",densidade_corrente_primaria,densidade_corrente_secundaria)
@@ -159,6 +167,8 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     print("perda_cobre",perda_cobre)
     print("coeficiente_perda_especifica",coeficiente_perda_especifica)
     print("perda_ferro",perda_ferro)
+    print("perda_total",perda_total)
+    print("rendimento",rendimento)
 def main():
     calcula_dados_transformador()
 if __name__ == "__main__":
