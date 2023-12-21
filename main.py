@@ -122,6 +122,18 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
 
     # Calculo perdas 
 
+    # Perdas do ferro
+
+    coeficiente_material_correntes_parasitas = 4.8
+    coeficiente_material_histerese_magnetica = 2.4
+    espessura_laminas = 0.5
+
+    coeficiente_perda_especifica = round(coeficiente_material_correntes_parasitas * ((espessura_laminas * frequencia / 50) ** 2) + coeficiente_material_histerese_magnetica * frequencia / 50,1)
+
+    inducao_maxima = 11300
+
+    perda_ferro = round(coeficiente_perda_especifica * ((inducao_maxima / 10000) ** 2),1)
+    
     # Perdas do cobre
 
     perda_cobre = round(2.43 * (media_densidades ** 2) * peso_cobre_kg,1)
@@ -145,7 +157,8 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     print("peso_cobre",peso_cobre_g)
     print("peso_cobre",peso_cobre_kg)
     print("perda_cobre",perda_cobre)
-
+    print("coeficiente_perda_especifica",coeficiente_perda_especifica)
+    print("perda_ferro",perda_ferro)
 def main():
     calcula_dados_transformador()
 if __name__ == "__main__":
