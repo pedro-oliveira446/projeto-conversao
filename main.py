@@ -125,6 +125,12 @@ def main():
 
     peso_cobre_kg = divide(peso_cobre_g,1000)
 
+    # Calculo perdas 
+
+    # Perdas do cobre
+
+    perda_cobre = round(2.43 * (media_densidades ** 2) * peso_cobre_kg,1)
+    
     print("secao_condutor_primario | corrente_primaria",secao_condutor_primario,corrente_primaria)
     print("secao_condutor_secundario | corrente_secundaria",secao_condutor_secundario,corrente_secundaria)
     print("densidade_corrente_primaria | densidade_corrente_secundaria",densidade_corrente_primaria,densidade_corrente_secundaria)
@@ -143,6 +149,7 @@ def main():
     print("peso_ferro",peso_ferro)
     print("peso_cobre",peso_cobre_g)
     print("peso_cobre",peso_cobre_kg)
-
+    print("perda_cobre",perda_cobre)
+    
 if __name__ == "__main__":
     main()
