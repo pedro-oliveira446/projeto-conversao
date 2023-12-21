@@ -41,12 +41,7 @@ def calcula_constante_espiras(frequencia):
     else:
         return 0
     
-def main():
-    frequencia = 60 # Hz
-    potencia_secundaria = 1000 # VA
-    tensao_primaria = 220 # V
-    tensao_secundaria = 24 # V
-
+def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_primaria = 220,tensao_secundaria = 24):
     potencia_primaria = potencia_secundaria * 1.1
 
     corrente_primaria = divide(potencia_primaria,tensao_primaria)
@@ -150,6 +145,8 @@ def main():
     print("peso_cobre",peso_cobre_g)
     print("peso_cobre",peso_cobre_kg)
     print("perda_cobre",perda_cobre)
-    
+
+def main():
+    calcula_dados_transformador()
 if __name__ == "__main__":
     main()
