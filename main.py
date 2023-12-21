@@ -85,7 +85,11 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
 
     possibilidade_execucao = secao_janela / secao_cobre_enrolado
 
+    tipo_lamina = "Padronizada"
+
     if possibilidade_execucao < 3:
+        tipo_lamina = "Comprida"
+
         # solucao laminas compridas
 
         # Calculo laminas
@@ -145,9 +149,6 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     # Total rendimento
 
     rendimento = round(potencia_secundaria / (potencia_secundaria + perda_total),2)
-    
-    tipo_lamina = "comprida"
-    qtd_lamina = 0
 
     print("Número de Espiras do Enrolamento Primário Np :",numero_espiras_primario)
     print()
@@ -159,7 +160,7 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     print()
     print("Tipo de lâmina :",tipo_lamina)
     print()
-    print("Qtd lâmina :",qtd_lamina)
+    print("Qtd lâmina :",secao_janela)
     print()
     print("Dimensões do transformador :",lado_a," x ",lado_b)
     print()
