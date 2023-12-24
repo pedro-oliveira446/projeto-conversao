@@ -192,39 +192,28 @@ def main():
     input_frame = tk.Frame(root)
 
     # Cria um label para o primeiro input
-    label_1 = tk.Label(input_frame, text="Frequencia (Hz)")
+    label_1 = tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10)
 
     # Cria um entry para o primeiro input
-    entry_1 = tk.Entry(input_frame)
+    entry_1 = tk.Entry(input_frame).grid(column=1, row=0, padx=10, pady=10)
 
     # Cria um label para o segundo input
-    label_2 = tk.Label(input_frame, text="Potencia secundaria (VA)")
+    label_2 = tk.Label(input_frame, text="Potencia secundaria (VA)").grid(column=0, row=1, padx=10, pady=10)
 
     # Cria um entry para o segundo input
-    entry_2 = tk.Entry(input_frame)
+    entry_2 = tk.Entry(input_frame).grid(column=1, row=1, padx=10, pady=10)
 
     # Cria um label para o terceiro input
-    label_3 = tk.Label(input_frame, text="Tensao primaria (v)")
+    label_3 = tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10)
 
     # Cria um entry para o terceiro input
-    entry_3 = tk.Entry(input_frame)
+    entry_3 = tk.Entry(input_frame).grid(column=1, row=2, padx=10, pady=10)
 
      # Cria um label para o terceiro input
-    label_4 = tk.Label(input_frame, text="Tensao secundaria (v)")
+    label_4 = tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10)
 
     # Cria um entry para o terceiro input
-    entry_4 = tk.Entry(input_frame)
-
-    # Adiciona os widgets ao frame
-
-    label_1.pack(side="left")
-    entry_1.pack(side="left")
-    label_2.pack(side="left")
-    entry_2.pack(side="left")
-    label_3.pack(side="left")
-    entry_3.pack(side="left")
-    label_4.pack(side="left")
-    entry_4.pack(side="left")
+    entry_4 = tk.Entry(input_frame).grid(column=1, row=3, padx=10, pady=10)
 
     # Adiciona os frames à janela principal
     input_frame.pack()
