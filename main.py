@@ -1,6 +1,8 @@
 import math
 import tkinter as tk
 
+from TabelaTransformador import TabelaTransformador
+
 def divide(a, b):
     return round(a / b,1)
 
@@ -159,35 +161,30 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     # Total rendimento
 
     rendimento = round(potencia_secundaria / (potencia_secundaria + perda_total),2)
+    
+    dados = dict()
+    dados['numero_espiras_primario'] = numero_espiras_primario
+    dados['numero_espiras_secundario'] = numero_espiras_secundario
+    dados['secao_condutor_primario'] = secao_condutor_primario
+    dados['secao_condutor_secundario'] = secao_condutor_secundario
+    dados['tipo_lamina'] = tipo_lamina
+    dados['qtd_lamina'] = secao_janela
+    dados['dimensoes_transformador'] = f"{lado_a} x {lado_b}"
+    dados['secao_magnetica_nucleo'] = secao_magnetica_nucleo
+    dados['secao_geometrica_nucleo'] = secao_geometrica_nucleo
+    dados['peso_ferro'] = peso_ferro
+    dados['peso_cobre'] = peso_cobre_kg
+    dados['perda_ferro'] = perda_ferro
+    dados['perda_cobre'] = perda_cobre
+    dados['rendimento'] = rendimento
 
-    print("Número de Espiras do Enrolamento Primário Np :",numero_espiras_primario)
-    print()
-    print("Número de Espiras do Enrolamento Secundário Ns :",numero_espiras_secundario)
-    print()
-    print("Bitola do cabo primário :",secao_condutor_primario)
-    print()
-    print("Bitola do cabo secundário :",secao_condutor_secundario)
-    print()
-    print("Tipo de lâmina :",tipo_lamina)
-    print()
-    print("Qtd lâmina :",secao_janela)
-    print()
-    print("Dimensões do transformador :",lado_a," x ",lado_b)
-    print()
-    print("Secao magnetica do nucleo : ",secao_magnetica_nucleo)
-    print()
-    print("Secao geometrica do nucleo :",secao_geometrica_nucleo)
-    print()
-    print("Peso do ferro :",peso_ferro)
-    print()
-    print("Peso do cobre :",peso_cobre_kg)
-    print()
-    print("Perda do ferro :",perda_ferro)
-    print()
-    print("Perda do cobre :",perda_cobre)
-    print()
-    print("Rendimento :",rendimento)
-    print()
+    return dados   
+
+def mostrar_tabela(root,frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria):
+    dados = calcula_dados_transformador(frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria)
+    tabela = TabelaTransformador(root,dados)
+    tabela.pack()
+
 def main():
     root = tk.Tk()
 
@@ -218,7 +215,7 @@ def main():
 
     button_frame = tk.Frame(root)
 
-    button = tk.Button(button_frame, text="Calcular dados transformador", command=lambda:calcula_dados_transformador(entry_1.get(),entry_2.get(),entry_3.get(),entry_4.get()))
+    button = tk.Button(button_frame, text="Calcular dados transformador", command=lambda:mostrar_tabela(root,entry_1.get(),entry_2.get(),entry_3.get(),entry_4.get()))
 
     button.grid(columnspan=2, padx=10, pady=10)
     
