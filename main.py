@@ -1,4 +1,5 @@
 import math
+import tkinter as tk
 
 def divide(a, b):
     return round(a / b,1)
@@ -179,6 +180,58 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     print("Rendimento :",rendimento)
     print()
 def main():
+    # Cria uma janela principal
+    root = tk.Tk()
+
+    # Define o título da janela
+    root.title("Calculos de transformadores monofasicos")
+
+    # frequencia=60,potencia_secundaria = 1000,tensao_primaria = 220,tensao_secundaria = 24
+    
+    # Cria um frame para conter os inputs
+    input_frame = tk.Frame(root)
+
+    # Cria um label para o primeiro input
+    label_1 = tk.Label(input_frame, text="Frequencia (Hz)")
+
+    # Cria um entry para o primeiro input
+    entry_1 = tk.Entry(input_frame)
+
+    # Cria um label para o segundo input
+    label_2 = tk.Label(input_frame, text="Potencia secundaria (VA)")
+
+    # Cria um entry para o segundo input
+    entry_2 = tk.Entry(input_frame)
+
+    # Cria um label para o terceiro input
+    label_3 = tk.Label(input_frame, text="Tensao primaria (v)")
+
+    # Cria um entry para o terceiro input
+    entry_3 = tk.Entry(input_frame)
+
+     # Cria um label para o terceiro input
+    label_4 = tk.Label(input_frame, text="Tensao secundaria (v)")
+
+    # Cria um entry para o terceiro input
+    entry_4 = tk.Entry(input_frame)
+
+    # Adiciona os widgets ao frame
+
+    label_1.pack(side="left")
+    entry_1.pack(side="left")
+    label_2.pack(side="left")
+    entry_2.pack(side="left")
+    label_3.pack(side="left")
+    entry_3.pack(side="left")
+    label_4.pack(side="left")
+    entry_4.pack(side="left")
+
+    # Adiciona os frames à janela principal
+    input_frame.pack()
+
     calcula_dados_transformador()
+
+    # Inicia o loop principal da janela
+    root.mainloop()
 if __name__ == "__main__":
     main()
