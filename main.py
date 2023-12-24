@@ -215,8 +215,17 @@ def main():
     # Cria um entry para o terceiro input
     entry_4 = tk.Entry(input_frame).grid(column=1, row=3, padx=10, pady=10)
 
+    # Cria um frame para conter o botão
+    button_frame = tk.Frame(root)
+
+    # Cria um botão para gerar a tabela
+    button = tk.Button(button_frame, text="Calcular dados transformador")
+
+    button.grid(columnspan=2, padx=10, pady=10)
     # Adiciona os frames à janela principal
+    
     input_frame.pack()
+    button_frame.pack()
 
     calcula_dados_transformador()
 
