@@ -43,6 +43,15 @@ def calcula_constante_espiras(frequencia):
         return 0
     
 def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_primaria = 220,tensao_secundaria = 24):
+    try:
+        frequencia = float(frequencia)
+        potencia_secundaria = float(potencia_secundaria)
+        tensao_primaria = float(tensao_primaria)
+        tensao_secundaria = float(tensao_secundaria)
+    except ValueError:
+        # Exibir mensagem de erro para o usuário
+        print("Valor inválido detectado. Insira números de ponto flutuante.")
+
     potencia_primaria = potencia_secundaria * 1.1
 
     corrente_primaria = divide(potencia_primaria,tensao_primaria)
@@ -180,54 +189,41 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     print("Rendimento :",rendimento)
     print()
 def main():
-    # Cria uma janela principal
     root = tk.Tk()
 
-    # Define o título da janela
     root.title("Calculos de transformadores monofasicos")
 
-    # frequencia=60,potencia_secundaria = 1000,tensao_primaria = 220,tensao_secundaria = 24
-    
-    # Cria um frame para conter os inputs
     input_frame = tk.Frame(root)
 
-    # Cria um label para o primeiro input
-    label_1 = tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10)
+    entry_1 = tk.Entry(input_frame)
+    entry_2 = tk.Entry(input_frame)
+    entry_3 = tk.Entry(input_frame)
+    entry_4 = tk.Entry(input_frame)
 
-    # Cria um entry para o primeiro input
-    entry_1 = tk.Entry(input_frame).grid(column=1, row=0, padx=10, pady=10)
+    tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10)
 
-    # Cria um label para o segundo input
-    label_2 = tk.Label(input_frame, text="Potencia secundaria (VA)").grid(column=0, row=1, padx=10, pady=10)
+    entry_1.grid(column=1, row=0, padx=10, pady=10)
 
-    # Cria um entry para o segundo input
-    entry_2 = tk.Entry(input_frame).grid(column=1, row=1, padx=10, pady=10)
+    tk.Label(input_frame, text="Potencia secundaria (VA)").grid(column=0, row=1, padx=10, pady=10)
 
-    # Cria um label para o terceiro input
-    label_3 = tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10)
+    entry_2.grid(column=1, row=1, padx=10, pady=10)
 
-    # Cria um entry para o terceiro input
-    entry_3 = tk.Entry(input_frame).grid(column=1, row=2, padx=10, pady=10)
+    tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10)
 
-     # Cria um label para o terceiro input
-    label_4 = tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10)
+    entry_3.grid(column=1, row=2, padx=10, pady=10)
 
-    # Cria um entry para o terceiro input
-    entry_4 = tk.Entry(input_frame).grid(column=1, row=3, padx=10, pady=10)
+    tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10)
 
-    # Cria um frame para conter o botão
+    entry_4.grid(column=1, row=3, padx=10, pady=10)
+
     button_frame = tk.Frame(root)
 
-    # Cria um botão para gerar a tabela
-    button = tk.Button(button_frame, text="Calcular dados transformador")
+    button = tk.Button(button_frame, text="Calcular dados transformador", command=lambda:calcula_dados_transformador(entry_1.get(),entry_2.get(),entry_3.get(),entry_4.get()))
 
     button.grid(columnspan=2, padx=10, pady=10)
-    # Adiciona os frames à janela principal
     
     input_frame.pack()
     button_frame.pack()
-
-    calcula_dados_transformador()
 
     # Inicia o loop principal da janela
     root.mainloop()
