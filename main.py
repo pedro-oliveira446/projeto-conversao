@@ -163,20 +163,18 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     rendimento = round(potencia_secundaria / (potencia_secundaria + perda_total),2)
     
     dados = dict()
-    dados['numero_espiras_primario'] = numero_espiras_primario
-    dados['numero_espiras_secundario'] = numero_espiras_secundario
-    dados['secao_condutor_primario'] = secao_condutor_primario
-    dados['secao_condutor_secundario'] = secao_condutor_secundario
-    dados['tipo_lamina'] = tipo_lamina
-    dados['qtd_lamina'] = secao_janela
-    dados['dimensoes_transformador'] = f"{lado_a} x {lado_b}"
-    dados['secao_magnetica_nucleo'] = secao_magnetica_nucleo
-    dados['secao_geometrica_nucleo'] = secao_geometrica_nucleo
-    dados['peso_ferro'] = peso_ferro
-    dados['peso_cobre'] = peso_cobre_kg
-    dados['perda_ferro'] = perda_ferro
-    dados['perda_cobre'] = perda_cobre
-    dados['rendimento'] = rendimento
+    dados['Número de Espiras do Enrolamento Primário'] = numero_espiras_primario
+    dados['Número de Espiras do Enrolamento Secundário'] = numero_espiras_secundario
+    dados['Bitola do cabo primário'] = secao_condutor_primario
+    dados['Bitola do cabo secundário'] = secao_condutor_secundario
+    dados['Tipo de lâmina'] = tipo_lamina
+    dados['Qtd lâmina'] = secao_janela
+    dados['Dimensões do transformador'] = f"{lado_a} x {lado_b}"
+    dados['Seção magnética do núcleo'] = secao_magnetica_nucleo
+    dados['Seção geométrica do núcleo'] = secao_geometrica_nucleo
+    dados['Peso ferro'] = peso_ferro
+    dados['Peso cobre'] = peso_cobre_kg
+    dados['Rendimento'] = rendimento
 
     return dados   
 
@@ -197,19 +195,19 @@ def main():
     entry_3 = tk.Entry(input_frame)
     entry_4 = tk.Entry(input_frame)
 
-    tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10)
+    tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10, sticky="w")
 
     entry_1.grid(column=1, row=0, padx=10, pady=10)
 
-    tk.Label(input_frame, text="Potencia secundaria (VA)").grid(column=0, row=1, padx=10, pady=10)
+    tk.Label(input_frame, text="Potencia secundaria (VA)").grid(column=0, row=1, padx=10, pady=10, sticky="w")
 
     entry_2.grid(column=1, row=1, padx=10, pady=10)
 
-    tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10)
+    tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10, sticky="w")
 
     entry_3.grid(column=1, row=2, padx=10, pady=10)
 
-    tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10)
+    tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10, sticky="w")
 
     entry_4.grid(column=1, row=3, padx=10, pady=10)
 
