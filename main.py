@@ -3,6 +3,7 @@ import re
 import tkinter as tk
 
 from TabelaTransformador import TabelaTransformador
+from PlotCorrenteMagnetizacao import PlotCorrenteMagnetizacao
 
 def divide(a, b):
     return round(a / b,1)
@@ -177,7 +178,14 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     dados['Peso cobre'] = peso_cobre_kg
     dados['Rendimento'] = rendimento
 
-    return dados   
+    return dados
+
+
+def plot_corrente_magnetizacao(root, frequencia, potencia_secundaria, tensao_primaria, tensao_secundaria):
+    dados = calcula_dados_transformador(frequencia, potencia_secundaria, tensao_primaria, tensao_secundaria)
+
+    plot = PlotCorrenteMagnetizacao(root, frequencia, potencia_secundaria, tensao_primaria, tensao_secundaria, dados)
+    plot.pack()
 
 def mostrar_tabela(root,frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria):
     dados = calcula_dados_transformador(frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria)
@@ -231,6 +239,12 @@ def main():
     button = tk.Button(button_frame, text="Calcular dados transformador", command=lambda:mostrar_tabela(root,entry_1.get(),entry_2.get(),entry_3.get(),entry_4.get()))
 
     button.grid(columnspan=2, padx=10, pady=10)
+
+    button2 = tk.Button(button_frame, text="Gerar gráfico da corrente de magnetização",command=lambda: plot_corrente_magnetizacao(root, entry_1.get(), entry_2.get(), entry_3.get(), entry_4.get()))
+
+    button2.grid(columnspan=2, padx=10, pady=10)
+
+
     
     input_frame.pack()
     button_frame.pack()
