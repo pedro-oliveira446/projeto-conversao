@@ -181,6 +181,15 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
 
 def mostrar_tabela(root,frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria):
     dados = calcula_dados_transformador(frequencia,potencia_secundaria,tensao_primaria,tensao_secundaria)
+    
+    global tabela
+
+    # Destrói a tabela antiga, se existir
+    try:
+        tabela.destroy()  # Tenta destruir a tabela antiga
+    except NameError:
+        pass  # Se a tabela não existir, ignora o erro
+
     tabela = TabelaTransformador(root,dados)
     tabela.pack()
 

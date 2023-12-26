@@ -7,7 +7,8 @@ class TabelaTransformador(tk.Frame):
         super().__init__(master)
         
         self.dados = dados
-
+        self.tabela = None
+        
         self.cria_tabela()
 
     def cria_tabela(self):
