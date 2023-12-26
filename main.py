@@ -1,4 +1,5 @@
 import math
+import re
 import tkinter as tk
 
 from TabelaTransformador import TabelaTransformador
@@ -194,6 +195,11 @@ def main():
     entry_2 = tk.Entry(input_frame)
     entry_3 = tk.Entry(input_frame)
     entry_4 = tk.Entry(input_frame)
+
+    entry_1.insert(0, "60")
+    entry_2.insert(0, "1000")
+    entry_3.insert(0, "220")
+    entry_4.insert(0, "24")
 
     tk.Label(input_frame, text="Frequencia (Hz)").grid(column=0, row=0, padx=10, pady=10, sticky="w")
 
