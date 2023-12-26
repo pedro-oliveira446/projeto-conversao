@@ -203,11 +203,11 @@ def main():
 
     entry_2.grid(column=1, row=1, padx=10, pady=10)
 
-    tk.Label(input_frame, text="Tensao primaria (v)").grid(column=0, row=2, padx=10, pady=10, sticky="w")
+    tk.Label(input_frame, text="Tensao primaria (V)").grid(column=0, row=2, padx=10, pady=10, sticky="w")
 
     entry_3.grid(column=1, row=2, padx=10, pady=10)
 
-    tk.Label(input_frame, text="Tensao secundaria (v)").grid(column=0, row=3, padx=10, pady=10, sticky="w")
+    tk.Label(input_frame, text="Tensao secundaria (V)").grid(column=0, row=3, padx=10, pady=10, sticky="w")
 
     entry_4.grid(column=1, row=3, padx=10, pady=10)
 
