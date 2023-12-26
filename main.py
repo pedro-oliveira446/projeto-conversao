@@ -169,7 +169,7 @@ def calcula_dados_transformador(frequencia=60,potencia_secundaria = 1000,tensao_
     dados['Bitola do cabo primário'] = secao_condutor_primario
     dados['Bitola do cabo secundário'] = secao_condutor_secundario
     dados['Tipo de lâmina'] = tipo_lamina
-    dados['Qtd lâmina'] = secao_janela
+    dados['Qtd lâmina'] = divide(lado_b,espessura_laminas)
     dados['Dimensões do transformador'] = f"{lado_a} x {lado_b}"
     dados['Seção magnética do núcleo'] = secao_magnetica_nucleo
     dados['Seção geométrica do núcleo'] = secao_geometrica_nucleo
